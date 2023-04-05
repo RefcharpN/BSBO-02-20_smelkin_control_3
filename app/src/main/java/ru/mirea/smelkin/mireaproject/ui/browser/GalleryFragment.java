@@ -1,5 +1,4 @@
 package ru.mirea.smelkin.mireaproject.ui.browser;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
