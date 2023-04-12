@@ -12,5 +12,10 @@
             android:id="@+id/nav_gallery"
             android:icon="@drawable/baseline_internet"
             android:title="интеренет" />
+
+        <item
+            android:id="@+id/nav_musicPlayer"
+            android:icon="@drawable/baseline_music_note_24"
+            android:title="музыка" />
     </group>
 </menu>
