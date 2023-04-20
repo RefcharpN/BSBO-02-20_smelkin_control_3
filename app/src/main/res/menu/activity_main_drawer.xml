@@ -17,5 +17,20 @@
             android:id="@+id/nav_musicPlayer"
             android:icon="@drawable/baseline_music_note_24"
             android:title="музыка" />
+
+        <item
+            android:id="@+id/nav_gyroFragment"
+            android:icon="@drawable/baseline_screen_rotation_24"
+            android:title="гироскоп" />
+
+        <item
+            android:id="@+id/nav_cameraFragment"
+            android:icon="@drawable/baseline_camera_alt_24"
+            android:title="камера" />
+
+        <item
+            android:id="@+id/nav_audioFragment"
+            android:icon="@drawable/baseline_mic_24"
+            android:title="микрофон" />
     </group>
 </menu>

@@ -21,5 +21,20 @@
         android:name="ru.mirea.smelkin.mireaproject.MusicPlayer"
         android:label="музыкальный плеер"
         tools:layout="@layout/fragment_music_player" />
+    <fragment
+        android:id="@+id/nav_gyroFragment"
+        android:name="ru.mirea.smelkin.mireaproject.GyroFragment"
+        android:label="гироскоп"
+        tools:layout="@layout/fragment_gyro" />
+    <fragment
+        android:id="@+id/nav_cameraFragment"
+        android:name="ru.mirea.smelkin.mireaproject.CameraFragment"
+        android:label="камера"
+        tools:layout="@layout/fragment_camera" />
+    <fragment
+        android:id="@+id/nav_audioFragment"
+        android:name="ru.mirea.smelkin.mireaproject.AudioFragment"
+        android:label="микрофон"
+        tools:layout="@layout/fragment_audio" />
 
 </navigation>
