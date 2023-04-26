@@ -36,5 +36,15 @@
         android:name="ru.mirea.smelkin.mireaproject.AudioFragment"
         android:label="микрофон"
         tools:layout="@layout/fragment_audio" />
+    <fragment
+        android:id="@+id/nav_profileFragment"
+        android:name="ru.mirea.smelkin.mireaproject.ProfileFragment"
+        android:label="профиль"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/nav_filesFragment"
+        android:name="ru.mirea.smelkin.mireaproject.FilesFragment"
+        android:label="файлы"
+        tools:layout="@layout/fragment_files" />
 
 </navigation>

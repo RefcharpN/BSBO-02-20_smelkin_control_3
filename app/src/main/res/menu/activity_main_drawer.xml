@@ -32,5 +32,15 @@
             android:id="@+id/nav_audioFragment"
             android:icon="@drawable/baseline_mic_24"
             android:title="микрофон" />
+
+        <item
+            android:id="@+id/nav_profileFragment"
+            android:icon="@drawable/baseline_manage_accounts_24"
+            android:title="профиль" />
+
+        <item
+            android:id="@+id/nav_filesFragment"
+            android:icon="@drawable/baseline_insert_drive_file_24"
+            android:title="файлы" />
     </group>
 </menu>
