@@ -46,5 +46,10 @@
         android:name="ru.mirea.smelkin.mireaproject.FilesFragment"
         android:label="файлы"
         tools:layout="@layout/fragment_files" />
+    <fragment
+        android:id="@+id/nav_weatherFragment"
+        android:name="ru.mirea.smelkin.mireaproject.WeatherFragment"
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_weather" />
 
 </navigation>

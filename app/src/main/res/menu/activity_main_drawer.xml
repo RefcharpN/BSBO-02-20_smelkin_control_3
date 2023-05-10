@@ -42,5 +42,9 @@
             android:id="@+id/nav_filesFragment"
             android:icon="@drawable/baseline_insert_drive_file_24"
             android:title="файлы" />
+        <item
+            android:id="@+id/nav_weatherFragment"
+            android:icon="?android:attr/textSelectHandle"
+            android:title="погода" />
     </group>
 </menu>
