@@ -46,5 +46,9 @@
             android:id="@+id/nav_weatherFragment"
             android:icon="?android:attr/textSelectHandle"
             android:title="погода" />
+        <item
+            android:id="@+id/nav_restaurantsFragment"
+            android:icon="@android:drawable/ic_dialog_map"
+            android:title="заведения" />
     </group>
 </menu>

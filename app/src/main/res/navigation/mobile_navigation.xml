@@ -51,5 +51,10 @@
         android:name="ru.mirea.smelkin.mireaproject.WeatherFragment"
         android:label="погода"
         tools:layout="@layout/fragment_weather" />
+    <fragment
+        android:id="@+id/nav_restaurantsFragment"
+        android:name="ru.mirea.smelkin.mireaproject.restaurantsFragment"
+        android:label="заведения"
+        tools:layout="@layout/fragment_restaurants" />
 
 </navigation>

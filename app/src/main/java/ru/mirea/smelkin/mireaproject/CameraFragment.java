@@ -90,6 +90,7 @@ public class CameraFragment extends Fragment {
             }
         });
 
+
         ActivityResultLauncher<Intent> cameraActivityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), callback);
         // Обработчик нажатия на компонент «imageView»
         binding.button2.setOnClickListener(new View.OnClickListener() {
