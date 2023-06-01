@@ -116,7 +116,7 @@ public class ProfileFragment extends Fragment {
         if (requestCode == 101 && resultCode == RESULT_OK && null != data)
         {
             Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            //String[] filePathColumn = { MediaStore.Images.Media.DATA };
 
             binding.imageView.setImageURI(selectedImage);
 
