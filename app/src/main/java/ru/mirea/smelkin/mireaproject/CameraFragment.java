@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,7 +37,6 @@ public class CameraFragment extends Fragment {
 
     private FragmentCameraBinding binding;
     private static final int REQUEST_CODE_PERMISSION = 100;
-    private boolean isWork = false;
     private Uri imageUri = null;
 
     @Override
@@ -53,7 +53,7 @@ public class CameraFragment extends Fragment {
         if(android.os.Build.VERSION.SDK_INT > 32)
         {
             if (cameraPermissionStatus == PackageManager.PERMISSION_GRANTED) {
-                isWork = true;
+                ((MainActivity) getActivity()).camera_permission = true;
             } else {
                 ActivityCompat.requestPermissions(getActivity(), new String[] {android.Manifest.permission.CAMERA}, REQUEST_CODE_PERMISSION);
             }
@@ -61,7 +61,7 @@ public class CameraFragment extends Fragment {
         else
         {
             if (cameraPermissionStatus == PackageManager.PERMISSION_GRANTED && storagePermissionStatus == PackageManager.PERMISSION_GRANTED) {
-                isWork = true;
+                ((MainActivity) getActivity()).camera_permission = true;
             } else {
                 ActivityCompat.requestPermissions(getActivity(), new String[] {android.Manifest.permission.CAMERA, android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_CODE_PERMISSION);
             }
@@ -98,7 +98,8 @@ public class CameraFragment extends Fragment {
             public void onClick(View v) {
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 // проверка на наличие разрешений для камеры
-                if (isWork) {
+                if (((MainActivity) getActivity()).camera_permission)
+                {
                     try {
                         File photoFile = createImageFile();
                         // генерирование пути к файлу на основе authorities

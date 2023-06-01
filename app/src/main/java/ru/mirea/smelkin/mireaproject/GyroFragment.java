@@ -20,9 +20,7 @@ import ru.mirea.smelkin.mireaproject.databinding.FragmentGyroBinding;
 public class GyroFragment extends Fragment implements SensorEventListener {
 
     private FragmentGyroBinding binding;
-
     private TextView horizont_view;
-
     private SensorManager sensorManager;
     private Sensor accelerometerSensor;
 
@@ -58,10 +56,10 @@ public class GyroFragment extends Fragment implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             float valueAzimuth = event.values[0];
-            float valuePitch = event.values[1];
-            float valueRoll = event.values[2];
+//            float valuePitch = event.values[1];
+//            float valueRoll = event.values[2];
 
-            int inclination = (int) Math.round(Math.toDegrees(Math.acos(valueRoll)));
+            int inclination = (int) Math.round(Math.toDegrees(Math.acos(valueAzimuth)));
 
             if (inclination < 25 || inclination > 155)
             {

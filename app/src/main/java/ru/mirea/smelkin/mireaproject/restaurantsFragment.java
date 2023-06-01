@@ -1,9 +1,9 @@
 package ru.mirea.smelkin.mireaproject;
 
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
@@ -25,8 +25,6 @@ import org.osmdroid.views.overlay.compass.CompassOverlay;
 import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
-
-import ru.mirea.smelkin.mireaproject.databinding.FragmentCameraBinding;
 import ru.mirea.smelkin.mireaproject.databinding.FragmentRestaurantsBinding;
 
 public class restaurantsFragment extends Fragment {
@@ -37,6 +35,7 @@ public class restaurantsFragment extends Fragment {
     private MapView mapView = null;
     private MyLocationNewOverlay locationNewOverlay;
     private static final int REQUEST_CODE_PERMISSION = 200;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,8 +57,6 @@ public class restaurantsFragment extends Fragment {
         int fINE_LOCATION = ContextCompat.checkSelfPermission(root.getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION);
         if (cOARSE_LOCATION == PackageManager.PERMISSION_GRANTED || fINE_LOCATION == PackageManager.PERMISSION_GRANTED) {
             setMyLocation();
-        } else {
-            ActivityCompat.requestPermissions(getActivity(), new String[] {android.Manifest.permission.ACCESS_COARSE_LOCATION, android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE_PERMISSION);
         }
 
         //маркер 1 - fарш
@@ -131,7 +128,7 @@ public class restaurantsFragment extends Fragment {
         return root;
     }
 
-    private void setMyLocation()
+    protected void setMyLocation()
     {
         locationNewOverlay = new MyLocationNewOverlay(new GpsMyLocationProvider(root.getContext().getApplicationContext()), mapView);
         locationNewOverlay.enableMyLocation();
@@ -158,18 +155,5 @@ public class restaurantsFragment extends Fragment {
                 catch (Exception e) {}
             }
         });
-    }
-
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE_PERMISSION) {
-            boolean isWork = grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED;
-            if(isWork)
-            {
-                setMyLocation();
-            }
-        }
     }
 }

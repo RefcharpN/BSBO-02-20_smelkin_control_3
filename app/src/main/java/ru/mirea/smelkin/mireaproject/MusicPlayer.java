@@ -19,7 +19,6 @@ public class MusicPlayer extends Fragment {
         binding = FragmentMusicPlayerBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
         return root;
     }
 }
