@@ -44,7 +44,7 @@ public class MyServicePlayer extends Service {
 
         startForeground(1, builder.build());
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.komarovo);
+        mediaPlayer = MediaPlayer.create(this, R.raw.nora);
         mediaPlayer.setLooping(false);
     }
 
