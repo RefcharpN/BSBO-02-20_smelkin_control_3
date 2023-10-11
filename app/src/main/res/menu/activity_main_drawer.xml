@@ -50,5 +50,10 @@
             android:id="@+id/nav_restaurantsFragment"
             android:icon="@android:drawable/ic_dialog_map"
             android:title="заведения" />
+
+        <item
+            android:id="@+id/nav_phone_info_Fragment"
+            android:icon="@drawable/android_smart_phone_icon_electronics_mobile_phone_cell_phone_iphone_transparent_png_1637300"
+            android:title="уникаьный номер" />
     </group>
 </menu>

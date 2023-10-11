@@ -1,11 +1,14 @@
 package ru.mirea.smelkin.mireaproject;
 
+import static java.security.AccessController.getContext;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +25,8 @@ import android.os.Bundle;
 
 import ru.mirea.smelkin.mireaproject.databinding.ActivityMain2Binding;
 import ru.mirea.smelkin.mireaproject.databinding.ActivityMainBinding;
+import android.provider.Settings.Secure;
+
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -36,6 +41,9 @@ public class MainActivity2 extends AppCompatActivity {
         binding = ActivityMain2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         mAuth = FirebaseAuth.getInstance();
+
+        String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        binding.textView9.setText(android_id);
 
         binding.signin.setOnClickListener(new View.OnClickListener() {
             @Override

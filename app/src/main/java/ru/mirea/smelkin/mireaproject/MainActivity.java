@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         //TODO:объявление страниц
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_musicPlayer, R.id.nav_gyroFragment, R.id.nav_cameraFragment, R.id.nav_audioFragment, R.id.nav_profileFragment,
-                R.id.nav_filesFragment, R.id.nav_weatherFragment, R.id.nav_restaurantsFragment)
+                R.id.nav_filesFragment, R.id.nav_weatherFragment, R.id.nav_restaurantsFragment, R.id.nav_phone_info_Fragment)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
