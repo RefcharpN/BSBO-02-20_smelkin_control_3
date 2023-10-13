@@ -1,12 +1,19 @@
 package ru.mirea.smelkin.mireaproject;
 
+import static android.Manifest.permission.POST_NOTIFICATIONS;
 import static java.security.AccessController.getContext;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.TextUtils;
@@ -20,6 +27,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import android.os.Bundle;
 
@@ -74,11 +83,40 @@ public class MainActivity2 extends AppCompatActivity {
         });
     }
 
+
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+
+        if (ContextCompat.checkSelfPermission(this, POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{POST_NOTIFICATIONS}, 200);
+        }
+
+        Intent serviceIntent = new Intent(MainActivity2.this, CheckRemoteAppService.class);
+        ContextCompat.startForegroundService(MainActivity2.this, serviceIntent);
+
+        if(!checkRemote())
+        {
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            updateUI(currentUser);
+        }
+    }
+
+
+    private boolean checkRemote() {
+
+        @SuppressLint("QueryPermissionsNeeded") List<PackageInfo> packs = getPackageManager().getInstalledPackages(0);
+
+        for(int i=0;i < packs.size();i++) {
+            PackageInfo p = packs.get(i);
+            if(Objects.equals(p.packageName, "com.anydesk.anydeskandroid"))
+            {
+                DialogRemoteFind fragment = new DialogRemoteFind();
+                fragment.show(getSupportFragmentManager(), "mirea");
+                return true;
+            }
+        }
+        return false;
     }
 
     // [END on_start_check_user]
@@ -198,5 +236,15 @@ public class MainActivity2 extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void onContinueClicked() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        updateUI(currentUser);
+    }
+
+    public void onOkClicked() {
+        finish();
+        System.exit(0);
     }
 }

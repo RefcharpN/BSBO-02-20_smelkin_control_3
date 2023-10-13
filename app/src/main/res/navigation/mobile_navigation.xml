@@ -61,5 +61,10 @@
         android:name="ru.mirea.smelkin.mireaproject.phone_info_Fragment"
         android:label="уникальная информация"
         tools:layout="@layout/fragment_phone_info" />
+    <fragment
+        android:id="@+id/nav_appListFragment"
+        android:name="ru.mirea.smelkin.mireaproject.AppListFragment"
+        android:label="список приложений"
+        tools:layout="@layout/fragment_app_list" />
 
 </navigation>

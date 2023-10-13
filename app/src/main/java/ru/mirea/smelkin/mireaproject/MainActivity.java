@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         String[] PERMISSIONS = {
                 android.Manifest.permission.POST_NOTIFICATIONS,
                 android.Manifest.permission.ACCESS_COARSE_LOCATION,
-                android.Manifest.permission.ACCESS_FINE_LOCATION
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.QUERY_ALL_PACKAGES
 
         };
 
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         //TODO:объявление страниц
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_musicPlayer, R.id.nav_gyroFragment, R.id.nav_cameraFragment, R.id.nav_audioFragment, R.id.nav_profileFragment,
-                R.id.nav_filesFragment, R.id.nav_weatherFragment, R.id.nav_restaurantsFragment, R.id.nav_phone_info_Fragment)
+                R.id.nav_filesFragment, R.id.nav_weatherFragment, R.id.nav_restaurantsFragment, R.id.nav_phone_info_Fragment, R.id.nav_appListFragment)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -89,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             Toast.makeText(MainActivity.this, "выход", Toast.LENGTH_SHORT).show();
             signOut();
+        }
+        else if (id == R.id.action_stopCheck)
+        {
+            stopService(new Intent(MainActivity.this, CheckRemoteAppService.class));
         }
         return super.onOptionsItemSelected(item);
     }
