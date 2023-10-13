@@ -92,8 +92,6 @@ public class MainActivity2 extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{POST_NOTIFICATIONS}, 200);
         }
 
-        Intent serviceIntent = new Intent(MainActivity2.this, CheckRemoteAppService.class);
-        ContextCompat.startForegroundService(MainActivity2.this, serviceIntent);
 
         if(!checkRemote())
         {

@@ -91,10 +91,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "выход", Toast.LENGTH_SHORT).show();
             signOut();
         }
-        else if (id == R.id.action_stopCheck)
-        {
-            stopService(new Intent(MainActivity.this, CheckRemoteAppService.class));
-        }
+//        else if (id == R.id.action_stopCheck)
+//        {
+//            stopService(new Intent(MainActivity.this, CheckRemoteAppService.class));
+//        }
         return super.onOptionsItemSelected(item);
     }
 
