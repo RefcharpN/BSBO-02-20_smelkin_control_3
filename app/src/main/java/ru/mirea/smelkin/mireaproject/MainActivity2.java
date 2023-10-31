@@ -35,6 +35,8 @@ import android.os.Bundle;
 import ru.mirea.smelkin.mireaproject.databinding.ActivityMain2Binding;
 import ru.mirea.smelkin.mireaproject.databinding.ActivityMainBinding;
 import android.provider.Settings.Secure;
+import android.os.Handler;
+
 
 
 public class MainActivity2 extends AppCompatActivity {
@@ -43,6 +45,8 @@ public class MainActivity2 extends AppCompatActivity {
     private ActivityMain2Binding binding;
     // START declare_auth
     private FirebaseAuth mAuth;
+    Handler handler = new Handler();
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,9 +54,6 @@ public class MainActivity2 extends AppCompatActivity {
         binding = ActivityMain2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         mAuth = FirebaseAuth.getInstance();
-
-        String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-        binding.textView9.setText(android_id);
 
         binding.signin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,8 +96,23 @@ public class MainActivity2 extends AppCompatActivity {
 
         if(!checkRemote())
         {
+            String android_id = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+            binding.textView9.setText(android_id);
+
             FirebaseUser currentUser = mAuth.getCurrentUser();
             updateUI(currentUser);
+        }
+        else
+        {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // Do something after 5s = 5000ms
+                    finish();
+                    System.exit(0);
+                }
+            }, 5000);
+
         }
     }
 
@@ -237,6 +253,8 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     public void onContinueClicked() {
+        handler.removeCallbacksAndMessages(null);
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
