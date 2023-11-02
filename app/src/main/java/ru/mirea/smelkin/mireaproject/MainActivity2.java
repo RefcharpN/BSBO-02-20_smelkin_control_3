@@ -27,6 +27,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -170,7 +173,13 @@ public class MainActivity2 extends AppCompatActivity {
             return;
         }
 
-        mAuth.createUserWithEmailAndPassword(email, password)
+        //тут конвертация в sha1
+
+        String sha = this.encryptThisString(password);
+
+        Log.d("sha_test", sha);
+
+        mAuth.createUserWithEmailAndPassword(email, sha)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -189,6 +198,26 @@ public class MainActivity2 extends AppCompatActivity {
                 });
     }
 
+    public static String encryptThisString(String input)
+    {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+
+            byte[] messageDigest = md.digest(input.getBytes());
+
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            String hashtext = no.toString(16);
+
+            return hashtext;
+        }
+
+        // For specifying wrong message digest algorithms
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private boolean validateForm() {
         if(binding.password.getText().toString().length() <6)
         {
@@ -199,7 +228,10 @@ public class MainActivity2 extends AppCompatActivity {
 
     private void signIn(String email, String password) {
         Log.d(TAG, "signIn:" + email);
-        mAuth.signInWithEmailAndPassword(email, password)
+
+        String sha = this.encryptThisString(password);
+
+        mAuth.signInWithEmailAndPassword(email, sha)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
