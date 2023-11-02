@@ -26,11 +26,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import android.os.Bundle;
@@ -175,11 +170,9 @@ public class MainActivity2 extends AppCompatActivity {
 
         //тут конвертация в sha2
 
-        String sha = this.encryptThisString(password);
+        sha2 sha = new sha2("test");
 
-        Log.d("sha_test", sha);
-
-        mAuth.createUserWithEmailAndPassword(email, sha)
+        mAuth.createUserWithEmailAndPassword(email, sha.finalhash)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -198,25 +191,7 @@ public class MainActivity2 extends AppCompatActivity {
                 });
     }
 
-    public static String encryptThisString(String input)
-    {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-2");
 
-            byte[] messageDigest = md.digest(input.getBytes());
-
-            BigInteger no = new BigInteger(1, messageDigest);
-
-            String hashtext = no.toString(16);
-
-            return hashtext;
-        }
-
-        // For specifying wrong message digest algorithms
-        catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
     private boolean validateForm() {
         if(binding.password.getText().toString().length() <6)
@@ -230,9 +205,9 @@ public class MainActivity2 extends AppCompatActivity {
         Log.d(TAG, "signIn:" + email);
 
         //тут конвертация в sha2
-        String sha = this.encryptThisString(password);
+        sha2 sha = new sha2(password);
 
-        mAuth.signInWithEmailAndPassword(email, sha)
+        mAuth.signInWithEmailAndPassword(email, sha.finalhash)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
