@@ -201,7 +201,7 @@ public class MainActivity2 extends AppCompatActivity {
     public static String encryptThisString(String input)
     {
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            MessageDigest md = MessageDigest.getInstance("SHA-2");
 
             byte[] messageDigest = md.digest(input.getBytes());
 
