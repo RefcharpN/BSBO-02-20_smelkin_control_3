@@ -173,7 +173,7 @@ public class MainActivity2 extends AppCompatActivity {
             return;
         }
 
-        //тут конвертация в sha1
+        //тут конвертация в sha2
 
         String sha = this.encryptThisString(password);
 
@@ -229,6 +229,7 @@ public class MainActivity2 extends AppCompatActivity {
     private void signIn(String email, String password) {
         Log.d(TAG, "signIn:" + email);
 
+        //тут конвертация в sha2
         String sha = this.encryptThisString(password);
 
         mAuth.signInWithEmailAndPassword(email, sha)
