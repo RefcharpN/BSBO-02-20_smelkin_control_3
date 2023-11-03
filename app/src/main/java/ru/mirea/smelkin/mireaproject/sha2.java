@@ -10,7 +10,7 @@ public class sha2 {
 
     sha2(String message)
     {
-        String input = "2517Pass";
+        String input = message;
         String sha256Hash = sha256(input);
         Log.d("sha_test" ,"SHA-256 hash: " + sha256Hash);
         this.finalhash = sha256Hash;
