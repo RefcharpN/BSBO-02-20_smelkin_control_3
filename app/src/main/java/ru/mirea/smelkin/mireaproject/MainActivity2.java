@@ -170,7 +170,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         //тут конвертация в sha2
 
-        sha2 sha = new sha2("test");
+        sha2 sha = new sha2(password);
 
         mAuth.createUserWithEmailAndPassword(email, sha.finalhash)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
