@@ -69,8 +69,6 @@ public class FilesFragment extends Fragment {
         return root;
     }
 
-
-
     public void onOpenClicked() {
         if(isExternalStorageReadable())
         {
